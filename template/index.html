@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Live Translations</title>
+    <style>
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="column" id="chatgpt-column">
+        <h2>ChatGPT Translation</h2>
+        <p id="chatgpt-translation"></p>
+    </div>
+    <!-- <div class="column" id="claude-column">
+        <h2>Claude Translation</h2>
+        <p id="claude-translation"></p>
+    </div> -->
+    <script>
+        function fetchTranslations() {
+            fetch('/translations')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('chatgpt-translation').innerText = data.chatgpt;
+                    // document.getElementById('claude-translation').innerText = data.claude;
+                });
+        }
+
+        setInterval(fetchTranslations, 1000);
+    </script>
+</body>
+
+</html>
